@@ -1,0 +1,102 @@
+﻿@model povidom.ViewModels.Backoffice.EditProblemViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Редагування повідомлення";
+}
+
+
+<h3 style="text-align: center; margin-top: 50px; margin-bottom: 50px;">Редагування повідомлення</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group large">
+        @Html.LabelFor(model => model.Description, "Опис", htmlAttributes: new { @class = "form-label" })
+        <div class="form-control-wrapper">
+            @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "form-control-message" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Status, "Статус", htmlAttributes: new { @class = "form-label" })
+        <div class="form-control-wrapper">
+            @Html.EnumDropDownListFor(model => model.Status, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "form-control-message" })
+        </div>
+    </div>
+    <div class="form-group large">
+        @Html.LabelFor(model => model.Comment, "Примітки", htmlAttributes: new { @class = "form-label" })
+        <div class="form-control-wrapper">
+            @Html.TextAreaFor(model => model.Comment, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "form-control-message" })
+        </div>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Lastname, "Прізвище", htmlAttributes: new { @class = "form-label" })
+        <div class="form-control-wrapper">
+            @Html.TextBoxFor(model => model.Lastname, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Lastname, "", new { @class = "form-control-message" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Firstname, "Iм'я", htmlAttributes: new { @class = "form-label" })
+        <div class="form-control-wrapper">
+            @Html.TextBoxFor(model => model.Firstname, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Firstname, "", new { @class = "form-control-message" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Middlename, "По-батькові", htmlAttributes: new { @class = "form-label" })
+        <div class="form-control-wrapper">
+            @Html.TextBoxFor(model => model.Middlename, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Middlename, "", new { @class = "form-control-message" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Phone, "Телефон", htmlAttributes: new { @class = "form-label" })
+        <div class="form-control-wrapper">
+            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "form-control-message" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Street, "Вулиця", htmlAttributes: new { @class = "form-label" })
+        <div class="form-control-wrapper">
+            @Html.TextBoxFor(model => model.Street, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Street, "", new { @class = "form-control-message" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Building, "Будинок", htmlAttributes: new { @class = "form-label" })
+        <div class="form-control-wrapper">
+            @Html.TextBoxFor(model => model.Building, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Building, "", new { @class = "form-control-message" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Flat, "Квартира", htmlAttributes: new { @class = "form-label" })
+        <div class="form-control-wrapper">
+            @Html.TextBoxFor(model => model.Flat, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Flat, "", new { @class = "form-control-message" })
+        </div>
+    </div>
+
+    <div class="text-center">
+        @Html.ValidationSummary(true, "")
+    </div>
+
+    <div class="form-group" style="text-align: center;">
+        @Html.ActionLink("Повернутися до списку", "Index", null, new { @class = "button unstyled", @style = "margin-right: 30px;" })
+        <button class="button info medium" type="submit">Зберегти</button>
+    </div>
+
+}

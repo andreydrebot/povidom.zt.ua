@@ -1,0 +1,71 @@
+﻿<h2>Перевірте звернення та відредагуйте за необхідності</h2>
+
+<form data-bind="submit: submitAndShowSummary">
+    <div class="content">
+        <div class="document-header">
+            В.о. житомирського міського голови,
+            <br />
+            Цимбалюк Л.В.
+            <br />
+            10014, м. Житомир, майдан ім. С. П. Корольова, 4/2
+            <br />
+            <br />
+            <span placeholder="Прізвище" data-bind="editableText: { text: lastname, multiline: false }, css: { 'error': !lastname.isValid() }"></span> <span placeholder="Ім'я" data-bind="editableText: { text: firstname, multiline: false }, css: { 'error': !firstname.isValid() }"></span> <span placeholder="По-батькові" data-bind="editableText: { text: middlename, multiline: false }, css: { 'error': !middlename.isValid() }"></span>
+            <br />
+            що мешкає за адресою:
+            <br />
+            м. Житомир, <span placeholder="Вулиця" data-bind="editableText: { text: street, multiline: false }, css: { 'error': !street.isValid() }"></span>, <span placeholder="Квартира" data-bind="editableText: { text: building, multiline: false }, css: { 'error': !building.isValid() }"></span> кв.<span placeholder="Квартира" data-bind="editableText: { text: flat, multiline: false }, css: { 'error': !flat.isValid() }"></span>
+            <br />
+            телефон: <span placeholder="Номер телефону" data-bind="editableText: { text: phone, multiline: false }, css: { 'error': !phone.isValid() }"></span>
+        </div>
+        <div class="document-title">
+            <strong>Шановна Любовe Володимирівно!</strong>
+        </div>
+        <div class="document-body">
+            <p>
+                <span class="document-description" placeholder="Опис проблеми" data-bind="editableText: { text: description, multiline: true }, css: { 'error': !description.isValid() }"></span>
+            </p>
+            <p>
+                Очікую на вирішення звернення по суті та сподіваюсь на своєчасну відповідь, надану згідно з Указом Президента України від 07.02.2008 року №109/2008 та у терміни, встановлені Законом України «Про звернення громадян».
+            </p>
+        </div>
+        <div class="document-footer">
+            <table>
+                <tr>
+                    <td class="document-date">
+                        @DateTime.Now.ToShortDateString()
+                    </td>
+                    <td></td>
+                    <td class="document-signature"></td>
+                </tr>
+                <tr>
+                    <td class="document-date-description">(дата)</td>
+                    <td></td>
+                    <td class="document-signature-description">
+                        <!-- ko if: lastname().length -->
+                        <span data-bind="text: lastname"></span>
+                        <!-- /ko -->
+                        <!-- ko if: firstname().length -->
+                        &nbsp;<span data-bind="text: firstname()[0]"></span>.
+                        <!-- /ko -->
+                        <!-- ko if: middlename().length -->
+                        &nbsp;<span data-bind="text: middlename()[0]"></span>.
+                        <!-- /ko -->
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <hr />
+
+    <!-- ko ifnot: isValid -->
+    <div class="document-validation-error">Будь-ласка, заповніть обов'язклові поля, перед тим як відправити документ</div>
+    <!-- /ko -->
+
+    <div class="document-submit">
+        <button type="button" class="button large default" data-bind="click: showForm">Повернутися</button>
+        <button type="submit" class="button large info emphasize" data-bind="disable: !isValid(), css: { 'disabled': !isValid() }">Далі</button>
+    </div>
+
+</form>

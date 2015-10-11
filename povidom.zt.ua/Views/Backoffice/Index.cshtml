@@ -1,0 +1,124 @@
+﻿@using System.Web.Configuration
+@using povidom.Models
+@model povidom.ViewModels.Backoffice.ProblemCollectionViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Список повідомлень";
+}
+<div style="text-align: right; margin: 10px;">
+    @using (Html.BeginForm("Logout", "Backoffice", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <button class="button unstyled">Вийти з панелі керування</button>
+    }
+</div>
+<hr />
+<div style="display: table; width: 100%;">
+    <div style="display: table-cell;">
+
+        @foreach (var item in Model.Problems)
+        {
+            <table style="width: 100%; @{
+                                           if (item.IsDelegated)
+                                           {
+                                               <text>background-color: #eee;</text>
+                                           }
+                                       } ">
+                <tr>
+                    <td>
+                        <strong>#@item.Id</strong> від: <strong>@item.Lastname @item.Firstname @item.Middlename</strong>, що проживає за адресою <strong>@item.Street</strong>, <strong>@item.Building</strong>, <strong>@item.Flat</strong>
+                        <br />
+                        Телефон: @item.Phone
+                    </td>
+                    <td style="text-align: center;">
+                        @switch (item.Status)
+                        {
+                            case Status.New:
+                                <text><span style="color: #31708f">Нова</span></text>
+                                break;
+                            case Status.Waiting:
+                            <text><span style="color: #8a6d3b">Чекає на відповідь</span></text>
+                                break;
+                            case Status.Resolved:
+                            <text><span style="color: #3c763d">Вирішена</span></text>
+                                break;
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedOn)
+                    </td>
+
+                </tr>
+                <tr style="border-bottom: 1px #eee solid;">
+                    <td>
+                        @item.Description
+                    </td>
+                    <td colspan="2" style="text-align: right">
+                        @Html.ActionLink("Редагувати", "Edit", new { id = item.Id })&nbsp;|&nbsp;@Html.ActionLink("Видалити", "Delete", new { id = item.Id })&nbsp;|&nbsp;@Html.ActionLink("Завантажити", "GetReportDocument", "Report", new { id = item.Id }, null)
+                    </td>
+                </tr>
+            </table>
+        }
+
+
+    </div>
+    <div style="display: table-cell; width: 200px;padding-left: 20px; padding-top: 20px; vertical-align: top;">
+        @using (Html.BeginForm("Index", "Backoffice", FormMethod.Get))
+        {
+            <div class="checkbox">
+                @Html.CheckBoxFor(model => model.ShowNew)
+                @Html.LabelFor(model => model.ShowNew, "Нові")
+            </div>
+            <div class="checkbox">
+                @Html.CheckBoxFor(model => model.ShowWaiting)
+                @Html.LabelFor(model => model.ShowWaiting, "Чекають на відповідь")
+            </div>
+            <div class="checkbox">
+                @Html.CheckBoxFor(model => model.ShowResolved)
+                @Html.LabelFor(model => model.ShowResolved, "Вирішені")
+            </div>
+            <br />
+            <div class="checkbox">
+                @Html.CheckBoxFor(model => model.ShowDelegated)
+                @Html.LabelFor(model => model.ShowDelegated, "Делеговані")
+            </div>
+            <div class="checkbox">
+                @Html.CheckBoxFor(model => model.ShowNotDelegated)
+                @Html.LabelFor(model => model.ShowNotDelegated, "Не делеговані")
+            </div>
+            <br />
+            <div>
+                @Html.TextBoxFor(model => model.Street, new { @placeholder = "Вулиця" })
+            </div>
+            <div>
+                @Html.TextBoxFor(model => model.Building, new { @placeholder = "Будинок" })
+            </div>
+            <div>
+                @Html.TextBoxFor(model => model.Flat, new { @placeholder = "Квартира" })
+            </div>
+            <br />
+            <div>
+                @Html.TextBoxFor(model => model.Lastname, new { @placeholder = "Прізвище" })
+            </div>
+            <div>
+                @Html.TextBoxFor(model => model.Firstname, new { @placeholder = "Ім'я" })
+            </div>
+            <div>
+                @Html.TextBoxFor(model => model.Middlename, new { @placeholder = "По батькові" })
+            </div>
+            <div>
+                @Html.TextBoxFor(model => model.Phone, new { @placeholder = "Телефон" })
+            </div>
+            <br />
+            <div>
+                @Html.EnumDropDownListFor(model => model.SortBy)
+            </div>
+            <hr />
+            <div>
+                <button class="button medium info">Фільтрувати</button>
+            </div>
+        }
+
+    </div>
+</div>

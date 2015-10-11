@@ -1,0 +1,52 @@
+﻿<h2>Ви за крок до вирішення проблеми</h2>
+<div class="content summary">
+    <div data-bind="style: { visibility: id() ? 'visible' : 'hidden'}">
+        <div class="statement">
+            Звернення готове. Тепер його необхідно надіслати до міської ради. Є два варіанти:
+        </div>
+        <div class="document-delivery-wrapper">
+            <div class="document-image-wrapper">
+                <img class="document-image" src="../../css/img/word.png" alt="" data-bind="click: open" />
+            </div>
+            <div class="document-delivery">
+                <div class="statement warning">
+                    1. Ми, команда Демократичного Альянсу, готові допомогти та надіслати його замість Вас.
+                    <br />
+                    <br />
+                    <!-- ko ifnot: isDelegated -->
+                    <div class="text-center delegate">
+                        <button class="button info medium" data-bind="disabled: !id(), css: { disabled: !id(), progress: !id() }, click: delegate">Надіслати звернення ДемАльянсу</button>
+                    </div>
+                    <!-- /ko -->
+                    <!-- ko if: isDelegated -->
+                    <div class="text-center delegate">
+                        <strong><em>Дякуємо! Ми отримали ваше повідомлення!</em></strong>
+                    </div>
+                    <!-- /ko -->
+                </div>
+                <div class="statement">
+                    2. Завантажте, роздрукуйте, підпишіть та передайте звернення до каб. 101 Житомирської міської ради за адресою <a href="https://goo.gl/maps/FEKcy" target="_blank">майдан ім. С. П. Корольова, 4/2.</a>
+                    <br />
+                    <br />
+                    <div class="text-center">
+                        <button class="button warning medium" data-bind="disabled: !id(), css: { disabled: !id(), progress: !id() }, click: open">Зберегти та роздрукувати</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="statement">
+            Не пізніше <a href="http://zakon4.rada.gov.ua/laws/show/393/96-%D0%B2%D1%80/parao106#o106" target="_blank">30 днів</a> на вашу адресу повинна надійти відповідь та вирішитись проблема по суті звернення. Якщо відповідь не надійшла вчасно, напишіть нам на адресу <a href="mailto:admin@povidom.zt.ua">admin@povidom.zt.ua</a>.
+            <br />
+            <br />
+            Крім того, Ви можете долучити до звернення додатки попередньо зазначивши про це у зверненні.
+        </div>
+        <hr />
+        <div class="text-center">
+            <button class="button unstyled" data-bind="click: start">Подати ще одну заявку</button>
+        </div>
+    </div>
+    <!-- ko ifnot: id -->
+    <div class="loader"></div>
+    <!-- /ko -->
+</div>

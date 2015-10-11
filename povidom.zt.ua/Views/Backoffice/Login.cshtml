@@ -1,0 +1,35 @@
+﻿@model povidom.ViewModels.Backoffice.LoginViewModel
+@{
+    ViewBag.Title = "Вхід в панель керування";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 style="text-align: center; margin-top: 100px; margin-bottom: 50px;">Вхід в панель керування</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Username, "Iм'я", htmlAttributes: new { @class = "form-label" })
+        <div class="form-control-wrapper">
+            @Html.TextBox("username", "admin", new { @class = "form-control", @disabled = "disabled" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password, "Пароль", htmlAttributes: new { @class = "form-label" })
+        <div class="form-control-wrapper">
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.ValidationSummary(true, "")
+    </div>
+
+    <div class="form-group" style="text-align: center;">
+        <button class="button info medium" type="submit">Ввійти</button>
+    </div>
+
+}

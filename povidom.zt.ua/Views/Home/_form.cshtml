@@ -1,0 +1,71 @@
+﻿<h2>Заповніть форму</h2>
+
+<form data-bind="submit: showDocument">
+    <div class="content">
+        <div class="form-group" data-bind="css: { error: !(firstname.isValid() && lastname.isValid() && middlename.isValid()) && showValidationError() }">
+            <div class="form-label">
+                <div class="form-group-index">1</div>
+                Ваші ім'я та прізвище
+            </div>
+            <div style="display: table; width: 100%;" class="form-control-container">
+                <div class="form-control-wrapper">
+                    <input class="form-control" type="text" placeholder="Прізвище" data-bind="value: lastname, valueUpdate: 'afterkeydown'" />
+                </div>
+                <div class="form-control-wrapper">
+                    <input class="form-control" type="text" placeholder="Ім'я" data-bind="value: firstname, valueUpdate: 'afterkeydown'" />
+                </div>
+                <div class="form-control-wrapper">
+                    <input class="form-control" type="text" placeholder="По-батькові" data-bind="value: middlename, valueUpdate: 'afterkeydown'" />
+                </div>
+            </div>
+            <span class="form-control-message" data-bind="visible: !(firstname.isValid() && lastname.isValid() && middlename.isValid()) && showValidationError()">Будь-ласка, введіть коректні прізвище, ім'я та по-батькові </span>
+        </div>
+        <div class="form-group" data-bind="css: { error: !phone.isValid() && showValidationError() }">
+            <div class="form-label">
+                <div class="form-group-index">2</div>
+                Ваш номер телефону
+            </div>
+            <div class="form-control-container">
+                <div class="form-control-wrapper phone">
+                    <input class="form-control" type="text" placeholder="0987654321" data-bind="value: phone, valueUpdate: 'afterkeydown'" />
+                </div>
+            </div>
+
+            <span class="form-control-message" data-bind="visible: !phone.isValid() && showValidationError()">Будь-ласка, введіть коректний телефон</span>
+        </div>
+        <div class="form-group" data-bind="css: { error: !(street.isValid() && building.isValid() && flat.isValid()) && showValidationError() }">
+            <div class="form-label">
+                <div class="form-group-index">3</div>
+                Ваша адреса
+            </div>
+            <div class="form-control-container">
+                <div class="form-control-wrapper street">
+                    <input class="form-control" type="text" placeholder="Вулиця" data-bind="value: street, typeahead: streets, valueUpdate: 'afterkeydown'" />
+                </div>
+                <div class="form-control-wrapper building">
+                    <input class="form-control" type="text" placeholder="Будинок" data-bind="value: building, valueUpdate: 'afterkeydown'" />
+                </div>
+                <div class="form-control-wrapper flat">
+                    <input class="form-control" type="text" placeholder="Квартира" data-bind="value: flat, valueUpdate: 'afterkeydown'" />
+                </div>
+            </div>
+
+            <span class="form-control-message" data-bind="visible: !(street.isValid() && building.isValid() && flat.isValid()) && showValidationError()">Будь-ласка, введіть коректну адресу</span>
+        </div>
+        <div class="form-group issue" data-bind="css: { error: !description.isValid() && showValidationError() }">
+            <div class="form-label">
+                <div class="form-group-index">4</div>
+                Детально опишіть проблему
+            </div>
+            <textarea class="form-control" placeholder="Коротко але детально опишіть суть звернення. Наприклад: У моєму під'їзді... " data-bind="value: description, valueUpdate: 'afterkeydown'" rows="4"></textarea>
+            <span class="form-control-message" data-bind="visible: !description.isValid() && showValidationError()">Будь-ласка, опишіть проблему</span>
+        </div>
+
+    </div>
+
+    <hr />
+
+    <div class="form-group form-submit text-center">
+        <button type="submit" class="button large info emphasize" data-bind="disable: showValidationError() && !isValid(), css: { 'disabled': showValidationError() && !isValid() }">Далі</button>
+    </div>
+</form>
