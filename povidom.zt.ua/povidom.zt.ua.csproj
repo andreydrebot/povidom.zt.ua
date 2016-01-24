@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -89,12 +90,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="css\app.css">
-      <DependentUpon>app.css.bundle</DependentUpon>
-    </Content>
-    <Content Include="css\app.min.css">
-      <DependentUpon>app.css</DependentUpon>
-    </Content>
+    <Content Include="css\app.css" />
+    <Content Include="css\app.min.css" />
     <Content Include="css\dashboard.css" />
     <Content Include="css\fonts\opensans-regular.svg" />
     <Content Include="css\fonts\opensans-semibold.svg" />
@@ -123,7 +120,7 @@
     <Content Include="Scripts\app.min.js.map">
       <DependentUpon>app.min.js</DependentUpon>
     </Content>
-    <Content Include="css\app.css.bundle" />
+    <None Include="bundleconfig.json" />
     <None Include="Scripts\vendor\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\scripts.js" />
     <Content Include="Scripts\vendor\jquery-2.1.1.js" />
@@ -137,13 +134,16 @@
     <Content Include="Scripts\vendor\vendor.min.js">
       <DependentUpon>vendor.js</DependentUpon>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\vendor\jquery-2.1.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BackofficeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MUFController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="DataContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -170,7 +170,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Backoffice\Login.cshtml" />
     <Content Include="Templates\default.docx" />
-    <Content Include="Views\Home\_footer.cshtml" />
+    <Content Include="Views\Shared\_footer.cshtml" />
     <Content Include="Views\Home\_header.cshtml" />
     <Content Include="Views\Home\_summary.cshtml" />
     <Content Include="Scripts\vendor\vendor.js.bundle" />
@@ -178,7 +178,9 @@
       <DependentUpon>vendor.min.js</DependentUpon>
     </Content>
     <Content Include="Views\Home\_description.cshtml" />
-    <Content Include="Views\Home\__analytics.cshtml" />
+    <Content Include="Views\Shared\__analytics.cshtml" />
+    <Content Include="Views\MUF\Index.cshtml" />
+    <Content Include="Views\Backoffice\_Layout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

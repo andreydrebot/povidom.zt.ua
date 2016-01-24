@@ -1,0 +1,9 @@
+[
+  {
+    "outputFileName": "css/app.css",
+    "inputFiles": [
+      "css/normalize.css",
+      "css/styles.css"
+    ]
+  }
+]

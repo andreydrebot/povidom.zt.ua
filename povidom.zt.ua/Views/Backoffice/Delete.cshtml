@@ -1,7 +1,7 @@
 ﻿@model povidom.Models.Problem
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Backoffice/_Layout.cshtml";
     ViewBag.Title = "Видалення повідомлення";
 }
 
@@ -14,7 +14,7 @@
             @Html.AntiForgeryToken()
 
             <div>
-                @Html.ActionLink("Повернутися до списку", "Index", null, new { @class = "button unstyled", @style="margin-right: 30px;" })
+                @Html.ActionLink("Повернутися до списку", "Index", null, new { @class = "button unstyled", @style = "margin-right: 30px;" })
                 <input type="submit" value="Видалити" class="button info medium" />
             </div>
         }

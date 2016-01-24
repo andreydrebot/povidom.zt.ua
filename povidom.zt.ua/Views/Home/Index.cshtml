@@ -1,44 +1,19 @@
-﻿@using System.Diagnostics
-@{
-    Layout = null;
+﻿@{
+    ViewBag.Title = "Змусьте комунальників працювати - повідомте про проблему!";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="viewport" content="width=640,maximum-scale=1.0,initial-scale=1.0">
-
-    <title>Змусьте комунальників працювати - повідомте про проблему!</title>
-
-    <link href="~/css/app.min.css" rel="stylesheet" />
-
-    @if (!HttpContext.Current.IsDebuggingEnabled)
-    {
-        @Html.Partial("__analytics")
-    }
-</head>
-<body>
-    @Html.Partial("_header")
-    @Html.Partial("_description")
-    <div id="report" class="container">
-        <div>
-            <!-- ko if: isFormVisible -->
-            @Html.Partial("_form")
-            <!-- /ko-->
-            <!-- ko if: isDocumentVisible -->
-            @Html.Partial("_document")
-            <!-- /ko -->
-            <!-- ko if: isSummaryVisible -->
-            @Html.Partial("_summary")
-            <!-- /ko -->
-        </div>
+@Html.Partial("_header")
+@Html.Partial("_description")
+<div id="report" class="container">
+    <div>
+        <!-- ko if: isFormVisible -->
+        @Html.Partial("_form")
+        <!-- /ko-->
+        <!-- ko if: isDocumentVisible -->
+        @Html.Partial("_document")
+        <!-- /ko -->
+        <!-- ko if: isSummaryVisible -->
+        @Html.Partial("_summary")
+        <!-- /ko -->
     </div>
-    @Html.Partial("_footer")
-    <script src="~/Scripts/vendor/vendor.min.js"></script>
-    <script src="~/Scripts/app.min.js"></script>
-</body>
-</html>
+</div>
